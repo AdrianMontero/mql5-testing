@@ -3,9 +3,9 @@
 CTrade trade;
 
 input double myLotSize = 0.01;
-input int myMeshDistanceInPips = 5;
-input int myTPInPips = 10;
-input int myBalanceSecurity = 3;
+input double myMeshDistance = 0.002;
+input double myTP = 0.0001;
+input double myBalanceSecurity = 0.6;
 
 void OnTick()
 {
@@ -33,12 +33,12 @@ void OnTick()
              //Calculate the current position price
              double PositionPriceCurrent = PositionGetDouble(POSITION_PRICE_CURRENT);
              //If the position is in range with the current ask
-             if(PositionPriceOpen < (PositionPriceCurrent  + myMeshDistanceInPips * _Point)  && PositionPriceOpen > (PositionPriceCurrent  - myMeshDistanceInPips * _Point))
+             if(PositionPriceOpen < (PositionPriceCurrent  + myMeshDistance)  && PositionPriceOpen > (PositionPriceCurrent  - myMeshDistance))
              {
-                 newTrade = true;
+                 newTrade = false;
              }
          }
-         if(newTrade == true && (myEquity >= (myBalance / myBalanceSecurity)))
+         if(newTrade == true && (myEquity >= (myBalance * myBalanceSecurity)))
          {
              OpenLongTrade(ask);
              OpenShortTrade(bid);
@@ -49,10 +49,10 @@ void OnTick()
   
 void OpenLongTrade(double ask)
 {      
-      trade.Buy(myLotSize, NULL, ask, NULL, (ask + myTPInPips * _Point), "Abierto en Largo");
+      trade.Buy(myLotSize, NULL, ask, NULL, (ask + myTP), "Abierto en Largo");
 }
 
 void OpenShortTrade(double bid)
 {      
-      trade.Sell(myLotSize, NULL, bid, NULL, (bid - myTPInPips * _Point), "Abierto en Corto");
+      trade.Sell(myLotSize, NULL, bid, NULL, (bid - myTP), "Abierto en Corto");
 }
