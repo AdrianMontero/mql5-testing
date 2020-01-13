@@ -28,16 +28,16 @@ void OnTick()
     contador = contador / 2;
  }
  if(contador <= 0)contador = 1;
- if(riskForce)
+ if(riskForce) //riskForce Code
  {
     if(myEquity <= (myBalance * 0.95))lot = lot *2;
-    else if(myEquity <= (myBalance * 0.90))lot = lot * 2 * 2;
-    else if(myEquity <= (myBalance * 0.80))lot = lot * 2 * 2 * 2;
-    else if(myEquity <= (myBalance * 0.75))lot = lot * 2 * 2 * 2 * 2;
+    else if(myEquity <= (myBalance * 0.90))lot = lot * 4;
+    else if(myEquity <= (myBalance * 0.80))lot = lot * 8;
+    else if(myEquity <= (myBalance * 0.75))lot = lot * 16;
     else lot = lot * contador;
  }else lot = lot * contador;
 
-    if (PositionSelect(_Symbol) == false)
+    if (PositionSelect(_Symbol) == false) // First trade code
      {
          if(tradeInLong)
          {
@@ -48,7 +48,7 @@ void OnTick()
             OpenShortTrade(bid, lot);
          }
      }
-    if (PositionSelect(_Symbol) == true)
+    if (PositionSelect(_Symbol) == true) //Bot Logic
      {
          bool newShortTrade = true; 
          bool newLongTrade = true;
