@@ -25,10 +25,10 @@ Bots:
     - myMeshDistance: Distancia entre cada apuesta que se vaya a abrir
     - myTP: Margen de beneficio que vamos a tener en cada trade
     - myBalanceSecurity: Opcion con la que, cuando la equidad baja de X deja de hacer entradas al mercado el bot
-    - myReinversionSecurity: Indica cuanto dinero necesita alcancar la equidad de tu cuenta para multiplicar el lotaje de cada trade,         por ejemplo, un 2 indica que tendria que tener el doble mas un 50% para doblar el lotaje, un 3 seria el doble mas un 33% un 5           seria el doble mas un 20%...
+    - myReinversionSecurity: Indica cuanto dinero necesita alcancar la equidad de tu cuenta para multiplicar el lotaje de cada trade, por ejemplo, un 2 indica que tendria que tener el doble mas un 50% para doblar el lotaje, un 3 seria el doble mas un 33% un 5 seria el doble mas un 20%...
     - tradeInLong: Con true abres operaciones en Largo, en false se deshabilita
     - tradeInShort: Con true abres operaciones en corto, en false se deshabilita
-    - riskForce: Habilita la opcion de doblar inversion dependiendo del lo alejada que este la equidad de tu cuenta del balance de la         misma.
+    - riskForce: Habilita la opcion de doblar inversion dependiendo del lo alejada que este la equidad de tu cuenta del balance de la misma.
     
     
 -RSI Bot - Comming soon
