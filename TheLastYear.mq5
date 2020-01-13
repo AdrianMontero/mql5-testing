@@ -43,7 +43,7 @@ void OnTick()
     if(myEquity <= (myBalance * riskForceEquityLvlThree))lot = lot * riskForceLvlThreeMultiplicator * contador;
     if(myEquity <= (myBalance * riskForceEquityLvlFour))lot = lot * riskForceLvlFourMultiplicator * contador;
     else lot = lot * contador;
- }
+ }else lot = lot * contador;
     if (PositionSelect(_Symbol) == false) // First trade code
      {
          if(tradeInLong)
