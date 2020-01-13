@@ -38,10 +38,10 @@ void OnTick()
  if(contador <= 0)contador = 1;
  if(riskForce) //riskForce Code
  {
-    if(myEquity <= (myBalance * riskForceEquityLvlOne))lot = lot * riskForceLvlOneMultiplicator;
-    else if(myEquity <= (myBalance * riskForceEquityLvlTwo))lot = lot * riskForceLvlTwoMultiplicator;
-    else if(myEquity <= (myBalance * riskForceEquityLvlThree))lot = lot * riskForceLvlThreeMultiplicator;
-    else if(myEquity <= (myBalance * riskForceEquityLvlFour))lot = lot * riskForceLvlFourMultiplicator;
+    if(myEquity <= (myBalance * riskForceEquityLvlOne))lot = lot * riskForceLvlOneMultiplicator * contador;
+    else if(myEquity <= (myBalance * riskForceEquityLvlTwo))lot = lot * riskForceLvlTwoMultiplicator * contador;
+    else if(myEquity <= (myBalance * riskForceEquityLvlThree))lot = lot * riskForceLvlThreeMultiplicator * contador;
+    else if(myEquity <= (myBalance * riskForceEquityLvlFour))lot = lot * riskForceLvlFourMultiplicator * contador;
     else lot = lot * contador;
  }else lot = lot * contador;
 
