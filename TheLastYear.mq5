@@ -7,6 +7,14 @@ input double myMeshDistance = 0.0007;
 input double myTP = 0.0001;
 input double myBalanceSecurity = 0.5;
 input double myReinversionSecurity = 3;
+input double riskForceEquityLvlOne = 0.95;
+input double riskForceLvlEquityTwo = 0.90;
+input double riskForceLvlEquityThree = 0.80;
+input double riskForceLvlEquityFour = 0.75;
+input int riskForceMultiplicatorLvlOne = 2;
+input int riskForceMultiplicatorLvlTwo = 3;
+input int riskForceMultiplicatorLvlThree = 4;
+input int riskForceMultiplicatorLvlFour = 5;
 input bool tradeInLong = false;
 input bool tradeInShort = true;
 input bool riskForce = true;
@@ -30,10 +38,10 @@ void OnTick()
  if(contador <= 0)contador = 1;
  if(riskForce) //riskForce Code
  {
-    if(myEquity <= (myBalance * 0.95))lot = lot *2;
-    else if(myEquity <= (myBalance * 0.90))lot = lot * 4;
-    else if(myEquity <= (myBalance * 0.80))lot = lot * 8;
-    else if(myEquity <= (myBalance * 0.75))lot = lot * 16;
+    if(myEquity <= (myBalance * riskForceEquityLvlOne))lot = lot * riskForceLvlOneMultiplicator;
+    else if(myEquity <= (myBalance * riskForceEquityLvlTwo))lot = lot * riskForceLvlTwoMultiplicator;
+    else if(myEquity <= (myBalance * riskForceEquityLvlThree))lot = lot * riskForceLvlThreeMultiplicator;
+    else if(myEquity <= (myBalance * riskForceEquityLvlFour))lot = lot * riskForceLvlFourMultiplicator;
     else lot = lot * contador;
  }else lot = lot * contador;
 
