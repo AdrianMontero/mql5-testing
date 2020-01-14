@@ -8,9 +8,9 @@ input double myTP = 0.0001;
 input double myBalanceSecurity = 0.5;
 input double myReinversionSecurity = 3;
 input double riskForceEquityLvlOne = 0.95;
-input double riskForceLvlEquityTwo = 0.90;
-input double riskForceLvlEquityThree = 0.80;
-input double riskForceLvlEquityFour = 0.75;
+input double riskForceEquityLvlTwo = 0.90;
+input double riskForceEquityLvlThree = 0.80;
+input double riskForceEquityLvlFour = 0.75;
 input int riskForceMultiplicatorLvlOne = 2;
 input int riskForceMultiplicatorLvlTwo = 3;
 input int riskForceMultiplicatorLvlThree = 4;
@@ -38,10 +38,10 @@ void OnTick()
  if(contador <= 0)contador = 1;
  if(riskForce) //riskForce Code
  {
-    if(myEquity <= (myBalance * riskForceEquityLvlOne))lot = lot * riskForceLvlOneMultiplicator * contador;
-    if(myEquity <= (myBalance * riskForceEquityLvlTwo))lot = lot * riskForceLvlTwoMultiplicator * contador;
-    if(myEquity <= (myBalance * riskForceEquityLvlThree))lot = lot * riskForceLvlThreeMultiplicator * contador;
-    if(myEquity <= (myBalance * riskForceEquityLvlFour))lot = lot * riskForceLvlFourMultiplicator * contador;
+    if(myEquity <= (myBalance * riskForceEquityLvlOne))lot = lot * riskForceMultiplicatorLvlOne * contador;
+    if(myEquity <= (myBalance * riskForceEquityLvlTwo))lot = lot * riskForceMultiplicatorLvlTwo * contador;
+    if(myEquity <= (myBalance * riskForceEquityLvlThree))lot = lot * riskForceMultiplicatorLvlThree * contador;
+    if(myEquity <= (myBalance * riskForceEquityLvlFour))lot = lot * riskForceMultiplicatorLvlFour * contador;
     else lot = lot * contador;
  }else lot = lot * contador;
     if (PositionSelect(_Symbol) == false) // First trade code
