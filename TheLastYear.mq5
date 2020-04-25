@@ -7,14 +7,15 @@ input double myMeshDistance = 0.0007;
 input double myTP = 0.0001;
 input double myBalanceSecurity = 0.5;
 input double myReinversionSecurity = 3;
+input int maxContador = 256;
 input double riskForceEquityLvlOne = 0.95;
 input double riskForceEquityLvlTwo = 0.90;
 input double riskForceEquityLvlThree = 0.80;
 input double riskForceEquityLvlFour = 0.75;
-input int riskForceMultiplicatorLvlOne = 2;
-input int riskForceMultiplicatorLvlTwo = 3;
-input int riskForceMultiplicatorLvlThree = 4;
-input int riskForceMultiplicatorLvlFour = 5;
+input double riskForceMultiplicatorLvlOne = 1.2;
+input double riskForceMultiplicatorLvlTwo = 1.5;
+input double riskForceMultiplicatorLvlThree = 2;
+input double riskForceMultiplicatorLvlFour = 2.5;
 input bool tradeInLong = false;
 input bool tradeInShort = true;
 input bool riskForce = true;
@@ -30,19 +31,20 @@ void OnTick()
     double ask = NormalizeDouble(SymbolInfoDouble(_Symbol, SYMBOL_ASK), _Digits); 
     double bid = NormalizeDouble(SymbolInfoDouble(_Symbol, SYMBOL_BID), _Digits);
     double lot = myLocalLotSize;    
- int contador = 2048;
+ int contador = maxContador;
  while(myEquity <= (myInitInversion + (myInitInversion / myReinversionSecurity)) * contador)
  {
     contador = contador / 2;
  }
- if(contador <= 0)contador = 1;
+ contador = contador * 2;
+ if(contador <= 2)contador = 1;
  if(riskForce) //riskForce Code
  {
     if(myEquity <= (myBalance * riskForceEquityLvlOne))lot = lot * riskForceMultiplicatorLvlOne * contador;
     if(myEquity <= (myBalance * riskForceEquityLvlTwo))lot = lot * riskForceMultiplicatorLvlTwo * contador;
     if(myEquity <= (myBalance * riskForceEquityLvlThree))lot = lot * riskForceMultiplicatorLvlThree * contador;
     if(myEquity <= (myBalance * riskForceEquityLvlFour))lot = lot * riskForceMultiplicatorLvlFour * contador;
-    else lot = lot * contador;
+    if(myEquity >= (myBalance * riskForceEquityLvlOne))lot = lot * contador;
  }else lot = lot * contador;
     if (PositionSelect(_Symbol) == false) // First trade code
      {
